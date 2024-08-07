@@ -1,9 +1,15 @@
-import { Controller, Get } from "routing-controllers";
+import { Controller, Get, JsonController } from "routing-controllers";
+import { version } from '../../package.json';
+import { time } from "console";
 
-@Controller('/health-check')
+@JsonController('/health-check')
 export class HealthCheckController {
     @Get()
     healthCheck() {
-        return `Healthy at ${new Date()}`
+        return {
+            status: 'ok',
+            version,
+            timestamp: new Date().toISOString(),
+        }
     }
 }
