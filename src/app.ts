@@ -1,12 +1,11 @@
 import path from 'path';
 import 'reflect-metadata';
 import { createExpressServer } from 'routing-controllers';
-import { config } from './config';
+import { config } from './app/config';
 import { PostgresDataSource } from './database/data-source';
 
 async function main() {
     console.log('Connecting to database');
-    console.log(config.database);
     await PostgresDataSource.initialize();
     console.log('Database connected');
 
