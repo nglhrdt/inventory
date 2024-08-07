@@ -1,6 +1,7 @@
 import { Service } from "typedi";
 import { PostgresDataSource } from "../database/data-source";
 import { Product } from "../database/entity/product.entity";
+import { FindManyOptions } from "typeorm";
 
 @Service()
 export class ProductService {
@@ -10,15 +11,15 @@ export class ProductService {
         return this.productRepository.insert({ name });
     }
 
-    searchProduct(query: string) {
-        throw new Error("Method not implemented.");
+    searchProduct(query?: FindManyOptions<Product>) {
+        return this.productRepository.find(query)
     }
 
     getProductById(id: number) {
-        throw new Error("Method not implemented.");
+        return this.productRepository.findOneOrFail({ where: { id } })
     }
 
-    getAllProducts() {
+    getAllProducts(query?: FindManyOptions<Product>) {
         return this.productRepository.find();
     }
 

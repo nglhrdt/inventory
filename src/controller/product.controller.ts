@@ -1,6 +1,8 @@
 import { Body, Get, JsonController, Post } from "routing-controllers";
 import { Container } from "typedi";
 import { ProductService } from "../service/product.service";
+import { FindManyOptions } from "typeorm";
+import { Product } from "../database/entity/product.entity";
 
 @JsonController('/products')
 export class ProductController {
@@ -21,7 +23,7 @@ export class ProductController {
     }
 
     @Get('/search/:query')
-    async searchProduct(query: string) {
+    async searchProduct(query?: FindManyOptions<Product>) {
         return await this.productService.searchProduct(query);
     }
 
