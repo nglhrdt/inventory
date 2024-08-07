@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/javascript-node:1-${templateOption:imageVariant}
+FROM mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
@@ -10,6 +10,3 @@ FROM mcr.microsoft.com/devcontainers/javascript-node:1-${templateOption:imageVar
 
 # [Optional] Uncomment if you want to install more global node modules
 # RUN su node -c "npm install -g <your-package-list-here>"
-
-
-

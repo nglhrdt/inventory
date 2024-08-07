@@ -4,15 +4,15 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 export const config = {
-    express: {
+    app: {
         port: parseInt(process.env.PORT || "3000", 10),
         routePrefix: process.env.ROUTE_PREFIX || "/api/v1",
     },
-    mongoDB: {
-        host: process.env.MONGODB_HOST || "localhost",
-        username: process.env.MONGODB_USERNAME || "",
-        password: process.env.MONGODB_PASSWORD || "",
-        port: parseInt(process.env.MONGODB_PORT || "27017", 10),
-        database: process.env.MONGODB_DATABASE || "inventory",
+    database: {
+        host: process.env.POSTGRES_HOST || "localhost",
+        username: process.env.POSTGRES_USERNAME || "",
+        password: process.env.POSTGRES_PASSWORD || "",
+        port: parseInt(process.env.POSTGRES_PORT || "5432", 10),
+        database: process.env.POSTGRES_DATABASE || "inventory",
     }
 };

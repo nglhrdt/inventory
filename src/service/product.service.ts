@@ -1,10 +1,10 @@
 import { Service } from "typedi";
-import { MongoDBDataSource } from "../database/data-source";
+import { PostgresDataSource } from "../database/data-source";
 import { Product } from "../database/entity/product.entity";
 
 @Service()
 export class ProductService {
-    private productRepository = MongoDBDataSource.getRepository(Product);
+    private productRepository = PostgresDataSource.getRepository(Product);
 
     createProduct(name: string) {
         return this.productRepository.insert({ name });

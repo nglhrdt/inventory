@@ -2,18 +2,20 @@ import path from 'path';
 import 'reflect-metadata';
 import { createExpressServer } from 'routing-controllers';
 import { config } from './config';
-import { MongoDBDataSource } from './database/data-source';
+import { PostgresDataSource } from './database/data-source';
 
 async function main() {
-    await MongoDBDataSource.initialize();
+    console.log('Connecting to database');
+    console.log(config.database);
+    await PostgresDataSource.initialize();
     console.log('Database connected');
 
     await createExpressServer({
-        routePrefix: config.express.routePrefix,
+        routePrefix: config.app.routePrefix,
         controllers: [path.join(__dirname + '/controller/*.ts')],
-    }).listen(config.express.port);
+    }).listen(config.app.port);
 
-    console.log(`Server running on port ${config.express.port}`);
+    console.log(`Server running on port ${config.app.port}`);
 }
 
 main().catch(console.error);

@@ -1,14 +1,13 @@
 import { DataSource } from "typeorm";
 import { config } from "../config";
 
-export const MongoDBDataSource = new DataSource({
-    type: "mongodb",
-    host: config.mongoDB.host,
-    username: config.mongoDB.username,
-    password: config.mongoDB.password,
-    port: config.mongoDB.port,
-    database: config.mongoDB.database,
-    useUnifiedTopology: true,
+export const PostgresDataSource = new DataSource({
+    type: "postgres",
+    host: config.database.host,
+    port: config.database.port,
+    username: config.database.username,
+    password: config.database.password,
+    database: config.database.database,
+    synchronize: true,
     entities: ['src/**/*.entity.ts'],
-    logging: false,
-});
+})
