@@ -1,0 +1,14 @@
+@route=inventory
+@baseUrl=http://localhost:3000/api/v1
+
+### get full inventory
+GET {{baseUrl}}/{{route}} HTTP/1.1
+
+### create new inventory entry
+
+POST {{baseUrl}}/{{route}} HTTP/1.1
+content-type: application/json
+
+{
+    "name": "My new awesome product 3"
+}
