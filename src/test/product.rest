@@ -1,0 +1,18 @@
+@route=products
+@baseUrl=http://localhost:3000/api/v1
+@id=69d374fe-84c6-4fc5-9667-d4bc9a07eb7e
+
+### get all products
+GET {{baseUrl}}/{{route}} HTTP/1.1
+
+### get product by id
+GET {{baseUrl}}/{{route}}/{{id}} HTTP/1.1
+
+### 
+
+POST {{baseUrl}}/{{route}} HTTP/1.1
+content-type: application/json
+
+{
+    "name": "My new awesome product 3"
+}

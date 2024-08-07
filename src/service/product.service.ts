@@ -7,20 +7,15 @@ import { FindManyOptions } from "typeorm";
 export class ProductService {
     private productRepository = PostgresDataSource.getRepository(Product);
 
-    createProduct(name: string) {
-        return this.productRepository.insert({ name });
-    }
-
-    searchProduct(query?: FindManyOptions<Product>) {
-        return this.productRepository.find(query)
-    }
-
-    getProductById(id: number) {
-        return this.productRepository.findOneOrFail({ where: { id } })
-    }
-
     getAllProducts(query?: FindManyOptions<Product>) {
         return this.productRepository.find();
     }
 
+    getProductById(id: string) {
+        return this.productRepository.findOne({ where: { id } })
+    }
+
+    createProduct(name: string) {
+        return this.productRepository.insert({ name }).then((data) => data.identifiers[0]);
+    }
 }

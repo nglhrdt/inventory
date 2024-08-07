@@ -1,14 +1,12 @@
-import { Body, Get, JsonController, Post } from "routing-controllers";
+import { Body, Get, HttpCode, JsonController, OnNull, Param, Post } from "routing-controllers";
 import { Container } from "typedi";
 import { ProductService } from "../service/product.service";
-import { FindManyOptions } from "typeorm";
-import { Product } from "../database/entity/product.entity";
 
 @JsonController('/products')
 export class ProductController {
     private productService: ProductService;
 
-    constructor() { 
+    constructor() {
         this.productService = Container.get(ProductService);
     }
 
@@ -18,17 +16,14 @@ export class ProductController {
     }
 
     @Get('/:id')
-    async getProductById(id: number) {
-        return await this.productService.getProductById(id);
-    }
-
-    @Get('/search/:query')
-    async searchProduct(query?: FindManyOptions<Product>) {
-        return await this.productService.searchProduct(query);
+    async getProductById(@Param('id') id: string) {
+        const product = await this.productService.getProductById(id); 
+        return product;
     }
 
     @Post()
-    async createProduct(@Body() data: {name: string}) {
+    @HttpCode(201)
+    async createProduct(@Body() data: { name: string }) {
         return await this.productService.createProduct(data.name);
     }
 }

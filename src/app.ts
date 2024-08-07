@@ -10,6 +10,13 @@ async function main() {
     console.log('Database connected');
 
     await createExpressServer({
+        defaults: {
+            nullResultCode: 404,
+            undefinedResultCode: 204,
+            paramOptions: {
+                required: true,
+            },
+        },
         routePrefix: config.app.routePrefix,
         controllers: [path.join(__dirname + '/controller/*.ts')],
     }).listen(config.app.port);
