@@ -1,6 +1,5 @@
-import { Controller, Get, JsonController } from "routing-controllers";
+import { Get, JsonController } from "routing-controllers";
 import { version } from '../../package.json';
-import { time } from "console";
 
 @JsonController('/health-check')
 export class HealthCheckController {

@@ -1,8 +1,8 @@
 import path from 'path';
 import 'reflect-metadata';
 import { createExpressServer } from 'routing-controllers';
-import { MongoDBDataSource } from './database/data-source';
 import { config } from './config';
+import { MongoDBDataSource } from './database/data-source';
 
 async function main() {
     await MongoDBDataSource.initialize();

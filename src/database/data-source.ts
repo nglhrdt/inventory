@@ -9,6 +9,6 @@ export const MongoDBDataSource = new DataSource({
     port: config.mongoDB.port,
     database: config.mongoDB.database,
     useUnifiedTopology: true,
-    entities: ["/entity/*.ts"],
+    entities: ['src/**/*.entity.ts'],
     logging: false,
 });
