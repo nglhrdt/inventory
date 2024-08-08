@@ -1,10 +1,13 @@
 import path from 'path';
 import 'reflect-metadata';
-import { createExpressServer } from 'routing-controllers';
+import { createExpressServer, useContainer } from 'routing-controllers';
+import Container from 'typedi';
 import { config } from './app/config';
 import { PostgresDataSource } from './database/data-source';
 
 async function main() {
+    useContainer(Container);
+
     console.log('Connecting to database');
     await PostgresDataSource.initialize();
     console.log('Database connected');

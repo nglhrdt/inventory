@@ -1,23 +1,22 @@
 import { Body, Get, JsonController, Post } from "routing-controllers";
-import Container, { Service } from "typedi";
+import { Service } from "typedi";
 import { InventoryService } from "../service/inventory.service";
 
 @JsonController('/inventory')
+@Service()
 export class InventoryController {
-    private inventoryService: InventoryService;
 
-    constructor() {
+    constructor(private inventoryService: InventoryService) {
         console.log('InventoryController created');
-        this.inventoryService = Container.get(InventoryService);
     }
 
     @Get()
     getInventory() {
-        return this.inventoryService.getInventory();
+        return this.inventoryService.getFullInventory();
     }
 
-    @Post()
-    createInventory(@Body({required: true}) body: {productName: string, quantity: number}) {
-        return this.inventoryService.createInventory(body);
+    @Post('/transaction')
+    transaction(@Body({ required: true }) body: { productName: string, quantity: number }) {
+        return this.inventoryService.transaction(body);
     }
 }

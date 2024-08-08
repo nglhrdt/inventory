@@ -6,9 +6,10 @@ GET {{baseUrl}}/{{route}} HTTP/1.1
 
 ### create new inventory entry
 
-POST {{baseUrl}}/{{route}} HTTP/1.1
+POST {{baseUrl}}/{{route}}/transaction HTTP/1.1
 content-type: application/json
 
 {
-    "name": "My new awesome product 3"
+    "name": "My awesome product 23",
+    "quantity": 20
 }
